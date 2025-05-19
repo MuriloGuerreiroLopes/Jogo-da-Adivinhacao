@@ -1,0 +1,97 @@
+Segue o código do jogo, caso haja alguma melhoria a ser feita, é muito bem vinda!!
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    
+    //Cabeçalho do jogo
+    printf("**********************************\n");
+    printf("Bem vindo ao jogo da adivinhação!\n");
+    printf("**********************************\n");
+    
+    //variáveis
+    int chute;
+    int acertou;
+    int nivel;
+    int totaldetentativas;
+    int i;
+    int tentativas;
+    
+    //Quantidade de pontos
+    double pontos = 1000;
+    
+    //Gerar número secreto aleatório.
+    srand(time(0));
+    int numerosecreto = rand() % 100;
+    
+    //Nível de dificuldade
+    printf("Qual o nível de dificuldade?\n\n");
+    printf("(1) Fácil (2) Médio (3) Difícil\n\n");
+    printf("Escolha: ");
+
+    
+    scanf("%d", &nivel);
+    
+    switch(nivel) {
+        case 1:
+        totaldetentativas = 20;
+        break;
+        
+        case 2:
+        totaldetentativas = 10;
+        break;
+        
+        default:
+        totaldetentativas = 5;
+        break;
+        
+    }
+    
+    //Loop principal do jogo
+    for (i = 1; i <= totaldetentativas; i++) {
+        
+        printf("Tentativa %d de %d\n\n", i, totaldetentativas);
+        printf("Chute um numero: ");
+        scanf("%d", &chute);
+        
+    //Tratando chute de número negativo
+    if (chute < 0) {
+        
+        printf("Você não pode chutar números negativos.\n\n");
+        i--;
+        continue;
+    }
+        //Verifica se acertou, foi maior ou menor
+        acertou = chute == numerosecreto;
+        
+        if (acertou) {
+            break;
+        }
+            
+        else if (chute > numerosecreto) {
+            printf("\nSeu Chute foi maior que o número secreto!\n\n");
+         }
+       
+       else {
+           printf("\nSeu chute foi menor que o número scereto!\n\n");
+       }
+       
+     }
+
+    //Imprimindo mensagem de vitória
+   printf("Fim de jogo!!!\n\n");
+    
+    if(acertou) {
+    printf("Você ganhou!\n\n");
+    
+    }
+    
+    else {
+        printf("\nVocê perdeu! Tente novamente.\n\n");
+    
+    }
+    
+}
